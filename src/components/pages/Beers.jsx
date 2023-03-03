@@ -26,11 +26,12 @@ const Beers = () => {
       <ul>
         {allBeers.map(beer => (
           <li key={beer._id}>
-            <Link to={`/beers/${beer._id}`}></Link>
-            <img src={beer.image_url} alt="beer" />
-            <h2>{beer.name}</h2>
-            <p>{beer.tagline} </p>
-            <p>{beer.contributed_by} </p>
+            <Link to={`/beers/${beer._id}`}>
+              <img src={beer.image_url} alt="beer" />
+              <h2>{beer.name}</h2>
+              <p>{beer.tagline} </p>
+              <p>{beer.contributed_by} </p>
+            </Link>
           </li>
         ))}
       </ul>
