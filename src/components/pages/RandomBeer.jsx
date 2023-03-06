@@ -16,7 +16,7 @@ const RandomBeer = () => {
 
   return (
     <div>
-      <img src={RandomBeerImg} alt="random beer" />
+      <img className="img-fluid" src={RandomBeerImg} alt="random beer" />
       {data ? <Beer {...data} /> : <div>Loading</div>}
     </div>
   );

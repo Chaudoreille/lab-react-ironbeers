@@ -34,7 +34,7 @@ const CreateBeer = () => {
 
   return (
     <div>
-      <img src={newBeerImg} alt="new beer" />
+      <img className="img-fluid" src={newBeerImg} alt="new beer" />
       <form>
         <div>
           <span className="label">Name</span>

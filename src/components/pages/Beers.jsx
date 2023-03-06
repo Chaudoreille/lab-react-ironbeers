@@ -27,18 +27,22 @@ const Beers = () => {
 
   return (
     <div>
-      <img src={BeersImg} alt="beers" />
+      <img className="img-fluid" src={BeersImg} alt="beers" />
       <form>
         <input onChange={(e) => setFilter(e.currentTarget.value)} type="text" />
       </form>
-      <ul>
+      <ul className="container list-unstyled">
         {allBeers.map(beer => (
           <li key={beer._id}>
-            <Link to={`/beers/${beer._id}`}>
-              <img src={beer.image_url} alt="beer" />
-              <h2>{beer.name}</h2>
-              <p>{beer.tagline} </p>
-              <p>{beer.contributed_by} </p>
+            <Link className="row" to={`/beers/${beer._id}`}>
+              <div className="col-1 w-25">
+                <img src={beer.image_url} alt="beer" className="img-fluid mh-100" />
+              </div>
+              <div className="col-1 w-75">
+                <h2>{beer.name}</h2>
+                <p>{beer.tagline} </p>
+                <p>{beer.contributed_by} </p>
+              </div>
             </Link>
           </li>
         ))}
