@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import newBeerImg from "../../assets/new-beer.png";
+import Input from "../Input";
 
 const CreateBeer = () => {
   const [fields, setFields] = useState({});
@@ -30,44 +31,62 @@ const CreateBeer = () => {
       .catch(error => console.error(error));
   };
 
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => setMessage(), 3000);
+    }
+
+  }, [message]);
+
+
   const saveField = (event) => updateField(event.currentTarget.name, event.currentTarget.value);
 
   return (
-    <div>
+    <div className="mx-auto" style={{ maxWidth: "705px" }}>
       <img className="img-fluid" src={newBeerImg} alt="new beer" />
-      <form>
-        <div>
-          <span className="label">Name</span>
-          <input onChange={saveField} type="text" name="name" value={fields.name || ""} />
-        </div>
-        <div>
-          <span className="label">Description</span>
-          <input onChange={saveField} type="text" name="description" value={fields.description || ""} />
-        </div>
-        <div>
-          <span className="label">Tagline</span>
-          <input onChange={saveField} type="text" name="tagline" value={fields.tagline || ""} />
-        </div>
-        <div>
-          <span className="label">First brewed</span>
-          <input onChange={saveField} type="date" name="first_brewed" value={fields.first_brewed || ""} />
-        </div>
-        <div>
-          <span className="label">Brewers tips</span>
-          <input onChange={saveField} type="text" name="brewers_tips" value={fields.brewers_tips || ""} />
-        </div>
-        <div>
-          <span className="label">Attenuation level</span>
-          <input onChange={saveField} type="number" name="attenuation_level" value={fields.attenuation_level || ""} />
-        </div>
-        <div>
-          <span className="label">Contributed by</span>
-          <input onChange={saveField} type="text" name="contributed_by" value={fields.contributed_by || ""} />
-        </div>
-        <button onClick={sendForm}>Create A Beer !</button>
+      <h1 className="my-4">Create your own Beer !</h1>
+      <form className="container">
+        <Input
+          changeCallback={saveField}
+          name="name"
+          value={fields.name}
+        />
+        <Input
+          changeCallback={saveField}
+          name="description"
+          value={fields.description}
+        />
+        <Input
+          changeCallback={saveField}
+          name="tagline"
+          value={fields.tagline}
+        />
+        <Input
+          changeCallback={saveField}
+          type="date"
+          name="first_brewed"
+          value={fields.first_brewed}
+        />
+        <Input
+          changeCallback={saveField}
+          name="brewers_tips"
+          value={fields.brewers_tips}
+        />
+        <Input
+          changeCallback={saveField}
+          type="number"
+          name="attenuation_level"
+          value={fields.attenuation_level}
+        />
+        <Input
+          changeCallback={saveField}
+          name="contributed_by"
+          value={fields.contributed_by}
+        />
+        <button className="btn btn-primary my-4" onClick={sendForm}>Create A Beer !</button>
       </form>
       <div id="message">
-        <p>{message}</p>
+        <p className="badge text-bg-success fs-5 fw-normal">{message}</p>
       </div>
     </div>
   );
