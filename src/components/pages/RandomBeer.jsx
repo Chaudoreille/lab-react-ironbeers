@@ -9,7 +9,6 @@ const RandomBeer = () => {
     fetch(`https://ih-beers-api2.herokuapp.com/beers/random`)
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         setData(json);
       })
       .catch(error => console.error(error));

@@ -14,10 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />}></Route>
-          {/* <Route path="/beers" element={<Outlet />}> */}
-          <Route path='/beers' element={<Beers />}></Route>
-          <Route path='/beers/:id' element={<BeerDetails />}></Route>
-          {/* </Route> */}
+          <Route path="/beers" element={<Outlet />}>
+            <Route path='' element={<Beers />}></Route>
+            <Route path=':id' element={<BeerDetails />}></Route>
+          </Route>
           <Route path="/random-beer" element={<RandomBeer />}></Route>
           <Route path="/new-beer" element={<CreateBeer />}></Route>
         </Route>
