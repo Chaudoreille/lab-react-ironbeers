@@ -28,20 +28,20 @@ const Beers = () => {
   return (
     <div>
       <img className="img-fluid" src={BeersImg} alt="beers" />
-      <form>
-        <input onChange={(e) => setFilter(e.currentTarget.value)} type="text" />
+      <form className="my-4 mx-auto">
+        <input className="border border-gray" onChange={(e) => setFilter(e.currentTarget.value)} type="text" placeholder="Filter results" />
       </form>
-      <ul className="container list-unstyled">
+      <ul className="container list-unstyled p-0" style={{ maxWidth: "705px" }}>
         {allBeers.map(beer => (
-          <li key={beer._id}>
-            <Link className="row" to={`/beers/${beer._id}`}>
-              <div className="col-1 w-25">
+          <li key={beer._id} className="border border-gray p-3">
+            <Link className="row text-decoration-none" to={`/beers/${beer._id}`}>
+              <div className="col-1 w-25" style={{ maxHeight: "150px" }}>
                 <img src={beer.image_url} alt="beer" className="img-fluid mh-100" />
               </div>
-              <div className="col-1 w-75">
-                <h2>{beer.name}</h2>
-                <p>{beer.tagline} </p>
-                <p>{beer.contributed_by} </p>
+              <div className="col-1 w-75 d-flex flex-column justify-content-center align-items-start text-start">
+                <h2 className="text-dark fw-normal">{beer.name}</h2>
+                <p className="text-secondary text-opacity-50 mb-0 fw-bold">{beer.tagline}</p>
+                <small className="text-dark fw-bold">{beer.contributed_by} </small>
               </div>
             </Link>
           </li>
