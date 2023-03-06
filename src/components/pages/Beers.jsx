@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 
 const Beers = () => {
   const [allBeers, setAllBeers] = useState();
+  const [filter, setFilter] = useState();
 
   useEffect(() => {
-    fetch('https://ih-beers-api2.herokuapp.com/beers')
+    const requestUrl = filter ?
+      `https://ih-beers-api2.herokuapp.com/beers/search?q=${filter}` :
+      'https://ih-beers-api2.herokuapp.com/beers';
+    fetch(requestUrl)
       .then(res => res.json())
       .then(json => setAllBeers(json))
       .catch(error => console.error(error));
-  }, []);
+  }, [filter]);
 
   if (!allBeers) {
     return (
@@ -20,9 +24,13 @@ const Beers = () => {
       </div>
     );
   }
+
   return (
     <div>
       <img src={BeersImg} alt="beers" />
+      <form>
+        <input onChange={(e) => setFilter(e.currentTarget.value)} type="text" />
+      </form>
       <ul>
         {allBeers.map(beer => (
           <li key={beer._id}>
